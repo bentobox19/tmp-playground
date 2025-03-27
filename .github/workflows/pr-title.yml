@@ -1,0 +1,16 @@
+name: PR Title Echo
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  echo-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Echo PR title (UNSANITIZED)
+        run: |
+          echo "PR Title: ${{ github.event.pull_request.title }}"
