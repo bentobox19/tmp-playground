@@ -18,3 +18,13 @@ jobs:
 
       - name: Say Hello                # Another step with a custom shell command
         run: echo "👋 Hello from GitHub Actions!"  # `run` executes shell commands on the runner
+
+      # Step 2 of the Tutorial
+      #   Print all environment variables (some are juicy).
+      #   Dump the entire github context (who triggered, what branch, etc).
+      - name: Dump GitHub context
+        run: |
+          echo "== ENV =="
+          env | sort
+          echo "== GITHUB_CONTEXT =="
+          echo '${{ toJson(github) }}'
