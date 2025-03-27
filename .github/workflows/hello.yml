@@ -1,0 +1,20 @@
+# This is the name of the workflow as it appears in the GitHub Actions UI
+name: Hello PoC
+
+# This defines the event(s) that trigger the workflow
+on:
+  push:                    # Run this workflow when someone pushes code
+    branches:
+      - main               # ...but only if the push is to the `main` branch
+
+# This section defines the list of jobs to run
+jobs:
+  hello:                   # Name of the job (you can call it anything)
+    runs-on: ubuntu-latest # The type of virtual machine GitHub will use (here: latest Ubuntu runner)
+
+    steps:                 # A job is made up of sequential "steps"
+      - name: Checkout code            # Descriptive label for the step
+        uses: actions/checkout@v4      # Built-in GitHub Action to clone your repo into the runner
+
+      - name: Say Hello                # Another step with a custom shell command
+        run: echo "👋 Hello from GitHub Actions!"  # `run` executes shell commands on the runner
