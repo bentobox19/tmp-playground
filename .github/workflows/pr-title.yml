@@ -11,6 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Echo PR title (UNSANITIZED)
+      - name: Attempt to leak secret
         run: |
           echo "PR Title: ${{ github.event.pull_request.title }}"
+          echo "Secret: ${{ secrets.SUPER_SECRET }}"
